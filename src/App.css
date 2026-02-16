@@ -1,0 +1,792 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Light Mode Colors */
+  --bg-light: #e0e5ec;
+  --text-light: #2c3e50;
+  --text-secondary-light: #5a6c7d;
+  --shadow-light: #a3b1c6;
+  --highlight-light: #ffffff;
+  --primary-light: #667eea;
+  --primary-hover-light: #5568d3;
+  --success-light: #48bb78;
+  --danger-light: #f56565;
+  
+  /* Dark Mode Colors */
+  --bg-dark: #1a1a2e;
+  --text-dark: #edf2f7;
+  --text-secondary-dark: #a0aec0;
+  --shadow-dark: #0f0f1e;
+  --highlight-dark: #252540;
+  --primary-dark: #7c3aed;
+  --primary-hover-dark: #6d28d9;
+  --success-dark: #48bb78;
+  --danger-dark: #f56565;
+
+      /* ===== Estados ===== */
+    --border-soft: #D6DAE0;
+    --font-main: 'Outfit', system-ui, sans-serif;
+    --logo-font: 'Outfit', system-ui, sans-serif;
+
+    /* ===== Estilos Neumórficas ===== */
+    --border: #e8e8e8;
+    /* --shadow-light: #ffffff;
+    --shadow-dark: #c4c6c9; */
+    --shadow-raised-strong: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+    --shadow-raised-soft: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+    --shadow-inset-soft: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+    --shadow-inset-strong: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode */
+body.light-mode {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.light-mode .app {
+  background-color: var(--bg-light);
+}
+
+body.light-mode .neumorphic {
+  background: var(--bg-light);
+  box-shadow: 8px 8px 16px var(--shadow-light),
+              -8px -8px 16px var(--highlight-light);
+}
+
+body.light-mode .neumorphic-inset {
+  background: var(--bg-light);
+  box-shadow: inset 6px 6px 12px var(--shadow-light),
+              inset -6px -6px 12px var(--highlight-light);
+}
+
+body.light-mode .neumorphic-pressed {
+  background: var(--bg-light);
+  box-shadow: inset 4px 4px 8px var(--shadow-light),
+              inset -4px -4px 8px var(--highlight-light);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+body.dark-mode .app {
+  background-color: var(--bg-dark);
+}
+
+body.dark-mode .neumorphic {
+  background: var(--bg-dark);
+  box-shadow: 8px 8px 16px var(--shadow-dark),
+              -8px -8px 16px var(--highlight-dark);
+}
+
+body.dark-mode .neumorphic-inset {
+  background: var(--bg-dark);
+  box-shadow: inset 6px 6px 12px var(--shadow-dark),
+              inset -6px -6px 12px var(--highlight-dark);
+}
+
+body.dark-mode .neumorphic-pressed {
+  background: var(--bg-dark);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+              inset -4px -4px 8px var(--highlight-dark);
+}
+
+/* App Layout */
+.app {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 20px 0;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header-controls {
+  display: flex;
+  gap: 15px;
+}
+
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .icon-btn {
+  background: var(--bg-light);
+  box-shadow: 6px 6px 12px var(--shadow-light),
+              -6px -6px 12px var(--highlight-light);
+}
+
+body.dark-mode .icon-btn {
+  background: var(--bg-dark);
+  box-shadow: 6px 6px 12px var(--shadow-dark),
+              -6px -6px 12px var(--highlight-dark);
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+}
+
+.icon-btn:active {
+  transform: translateY(0);
+}
+
+body.light-mode .icon-btn:active {
+  box-shadow: inset 4px 4px 8px var(--shadow-light),
+              inset -4px -4px 8px var(--highlight-light);
+}
+
+body.dark-mode .icon-btn:active {
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+              inset -4px -4px 8px var(--highlight-dark);
+}
+
+/* Main Content */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 968px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Timer Section */
+.timer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.mode-selector {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 50px;
+}
+
+body.light-mode .mode-selector {
+  background: var(--bg-light);
+  box-shadow: inset 4px 4px 8px var(--shadow-light),
+              inset -4px -4px 8px var(--highlight-light);
+}
+
+body.dark-mode .mode-selector {
+  background: var(--bg-dark);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+              inset -4px -4px 8px var(--highlight-dark);
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .mode-btn {
+  background: transparent;
+  color: var(--text-secondary-light);
+}
+
+body.dark-mode .mode-btn {
+  background: transparent;
+  color: var(--text-secondary-dark);
+}
+
+body.light-mode .mode-btn.active {
+  background: var(--bg-light);
+  color: var(--primary-light);
+  box-shadow: 6px 6px 12px var(--shadow-light),
+              -6px -6px 12px var(--highlight-light);
+}
+
+body.dark-mode .mode-btn.active {
+  background: var(--bg-dark);
+  color: var(--primary-dark);
+  box-shadow: 6px 6px 12px var(--shadow-dark),
+              -6px -6px 12px var(--highlight-dark);
+}
+
+.timer-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.timer-circle {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+body.light-mode .timer-circle {
+  background: var(--bg-light);
+  box-shadow: 20px 20px 40px var(--shadow-light),
+              -20px -20px 40px var(--highlight-light);
+}
+
+body.dark-mode .timer-circle {
+  background: var(--bg-dark);
+  box-shadow: 20px 20px 40px var(--shadow-dark),
+              -20px -20px 40px var(--highlight-dark);
+}
+
+.mode-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+body.light-mode .mode-label {
+  color: var(--text-secondary-light);
+}
+
+body.dark-mode .mode-label {
+  color: var(--text-secondary-dark);
+}
+
+.time {
+  font-size: 4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+body.light-mode .time {
+  color: var(--text-light);
+}
+
+body.dark-mode .time {
+  color: var(--text-dark);
+}
+
+.pomodoro-count {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+body.light-mode .pomodoro-count {
+  color: var(--text-secondary-light);
+}
+
+body.dark-mode .pomodoro-count {
+  color: var(--text-secondary-dark);
+}
+
+.timer-controls {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.control-btn {
+  padding: 15px 40px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+body.light-mode .control-btn {
+  background: var(--bg-light);
+  color: var(--text-light);
+  box-shadow: 8px 8px 16px var(--shadow-light),
+              -8px -8px 16px var(--highlight-light);
+}
+
+body.dark-mode .control-btn {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  box-shadow: 8px 8px 16px var(--shadow-dark),
+              -8px -8px 16px var(--highlight-dark);
+}
+
+.control-btn:hover {
+  transform: translateY(-2px);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+}
+
+body.light-mode .control-btn:active {
+  box-shadow: inset 6px 6px 12px var(--shadow-light),
+              inset -6px -6px 12px var(--highlight-light);
+}
+
+body.dark-mode .control-btn:active {
+  box-shadow: inset 6px 6px 12px var(--shadow-dark),
+              inset -6px -6px 12px var(--highlight-dark);
+}
+
+body.light-mode .start-btn {
+  color: var(--primary-light);
+}
+
+body.dark-mode .start-btn {
+  color: var(--primary-dark);
+}
+
+/* Tasks Section */
+.tasks-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tasks-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.task-form {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+body.light-mode .task-form {
+  background: var(--bg-light);
+  box-shadow: inset 4px 4px 8px var(--shadow-light),
+              inset -4px -4px 8px var(--highlight-light);
+}
+
+body.dark-mode .task-form {
+  background: var(--bg-dark);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+              inset -4px -4px 8px var(--highlight-dark);
+}
+
+.task-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+}
+
+body.light-mode .task-input {
+  color: var(--text-light);
+}
+
+body.dark-mode .task-input {
+  color: var(--text-dark);
+}
+
+.task-input::placeholder {
+  opacity: 0.6;
+}
+
+body.light-mode .task-input::placeholder {
+  color: var(--text-secondary-light);
+}
+
+body.dark-mode .task-input::placeholder {
+  color: var(--text-secondary-dark);
+}
+
+.add-task-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .add-task-btn {
+  background: var(--bg-light);
+  color: var(--primary-light);
+  box-shadow: 4px 4px 8px var(--shadow-light),
+              -4px -4px 8px var(--highlight-light);
+}
+
+body.dark-mode .add-task-btn {
+  background: var(--bg-dark);
+  color: var(--primary-dark);
+  box-shadow: 4px 4px 8px var(--shadow-dark),
+              -4px -4px 8px var(--highlight-dark);
+}
+
+.add-task-btn:hover {
+  transform: scale(1.05);
+}
+
+.add-task-btn:active {
+  transform: scale(0.95);
+}
+
+body.light-mode .add-task-btn:active {
+  box-shadow: inset 3px 3px 6px var(--shadow-light),
+              inset -3px -3px 6px var(--highlight-light);
+}
+
+body.dark-mode .add-task-btn:active {
+  box-shadow: inset 3px 3px 6px var(--shadow-dark),
+              inset -3px -3px 6px var(--highlight-dark);
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .task-item {
+  background: var(--bg-light);
+  box-shadow: 6px 6px 12px var(--shadow-light),
+              -6px -6px 12px var(--highlight-light);
+}
+
+body.dark-mode .task-item {
+  background: var(--bg-dark);
+  box-shadow: 6px 6px 12px var(--shadow-dark),
+              -6px -6px 12px var(--highlight-dark);
+}
+
+.task-checkbox {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  appearance: none;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .task-checkbox {
+  background: var(--bg-light);
+  box-shadow: inset 3px 3px 6px var(--shadow-light),
+              inset -3px -3px 6px var(--highlight-light);
+}
+
+body.dark-mode .task-checkbox {
+  background: var(--bg-dark);
+  box-shadow: inset 3px 3px 6px var(--shadow-dark),
+              inset -3px -3px 6px var(--highlight-dark);
+}
+
+.task-checkbox:checked {
+  background: linear-gradient(135deg, var(--success-light), var(--success-dark));
+  box-shadow: none;
+}
+
+.task-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.task-text {
+  flex: 1;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .task-text {
+  color: var(--text-light);
+}
+
+body.dark-mode .task-text {
+  color: var(--text-dark);
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.delete-task-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+body.light-mode .delete-task-btn {
+  background: var(--bg-light);
+  color: var(--danger-light);
+  box-shadow: 4px 4px 8px var(--shadow-light),
+              -4px -4px 8px var(--highlight-light);
+}
+
+body.dark-mode .delete-task-btn {
+  background: var(--bg-dark);
+  color: var(--danger-dark);
+  box-shadow: 4px 4px 8px var(--shadow-dark),
+              -4px -4px 8px var(--highlight-dark);
+}
+
+.delete-task-btn:hover {
+  transform: scale(1.1);
+}
+
+.delete-task-btn:active {
+  transform: scale(0.9);
+}
+
+body.light-mode .delete-task-btn:active {
+  box-shadow: inset 3px 3px 6px var(--shadow-light),
+              inset -3px -3px 6px var(--highlight-light);
+}
+
+body.dark-mode .delete-task-btn:active {
+  box-shadow: inset 3px 3px 6px var(--shadow-dark),
+              inset -3px -3px 6px var(--highlight-dark);
+}
+
+.no-tasks {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0.6;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  border-radius: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+body.light-mode .modal-content {
+  background: var(--bg-light);
+  box-shadow: 20px 20px 40px var(--shadow-light),
+              -20px -20px 40px var(--highlight-light);
+}
+
+body.dark-mode .modal-content {
+  background: var(--bg-dark);
+  box-shadow: 20px 20px 40px var(--shadow-dark),
+              -20px -20px 40px var(--highlight-dark);
+}
+
+.modal-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.setting-group {
+  margin-bottom: 20px;
+}
+
+.setting-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+body.light-mode .setting-group label {
+  color: var(--text-secondary-light);
+}
+
+body.dark-mode .setting-group label {
+  color: var(--text-secondary-dark);
+}
+
+.setting-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+}
+
+body.light-mode .setting-group input {
+  background: var(--bg-light);
+  color: var(--text-light);
+  box-shadow: inset 4px 4px 8px var(--shadow-light),
+              inset -4px -4px 8px var(--highlight-light);
+}
+
+body.dark-mode .setting-group input {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+              inset -4px -4px 8px var(--highlight-dark);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.save-btn,
+.cancel-btn {
+  flex: 1;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .save-btn {
+  background: var(--bg-light);
+  color: var(--primary-light);
+  box-shadow: 6px 6px 12px var(--shadow-light),
+              -6px -6px 12px var(--highlight-light);
+}
+
+body.dark-mode .save-btn {
+  background: var(--bg-dark);
+  color: var(--primary-dark);
+  box-shadow: 6px 6px 12px var(--shadow-dark),
+              -6px -6px 12px var(--highlight-dark);
+}
+
+body.light-mode .cancel-btn {
+  background: var(--bg-light);
+  color: var(--text-secondary-light);
+  box-shadow: 6px 6px 12px var(--shadow-light),
+              -6px -6px 12px var(--highlight-light);
+}
+
+body.dark-mode .cancel-btn {
+  background: var(--bg-dark);
+  color: var(--text-secondary-dark);
+  box-shadow: 6px 6px 12px var(--shadow-dark),
+              -6px -6px 12px var(--highlight-dark);
+}
+
+.save-btn:hover,
+.cancel-btn:hover {
+  transform: translateY(-2px);
+}
+
+.save-btn:active,
+.cancel-btn:active {
+  transform: translateY(0);
+}
+
+body.light-mode .save-btn:active,
+body.light-mode .cancel-btn:active {
+  box-shadow: inset 4px 4px 8px var(--shadow-light),
+              inset -4px -4px 8px var(--highlight-light);
+}
+
+body.dark-mode .save-btn:active,
+body.dark-mode .cancel-btn:active {
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+              inset -4px -4px 8px var(--highlight-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .timer-circle {
+    width: 280px;
+    height: 280px;
+  }
+
+  .time {
+    font-size: 3rem;
+  }
+
+  .mode-btn {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+
+  .control-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    min-width: 120px;
+  }
+}
